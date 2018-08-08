@@ -63,7 +63,7 @@ def kfs_lor96(x0_t,t,tobs,y,H,R,rho,M,met,lam,loctype):
  Xa[0,:,:] = Xb[0,:,:]
 
  # Getting the R-localization weights
- if np.any(lam) != None:
+ if lam is not None:
   locmatrix = getlocmat(N,L,H,lam,loctype)
  else:
   locmatrix = None
@@ -159,7 +159,7 @@ def enkfs(Xb,y,H,R,rho,met,lam,locmatrix):
  # Now, we choose from one of three methods
  # Stochastic Ensemble Kalman Filter
  if met=='SEnKF':
-  if np.any(locmatrix) == None:
+  if locmatrix is None:
    # The Kalman gain matrix without localization
    Khat = 1.0/(M-1)*Xb_pert*Yb_pert.T * pinv(1.0/(M-1)*Yb_pert*Yb_pert.T+R)
   else:
@@ -180,7 +180,7 @@ def enkfs(Xb,y,H,R,rho,met,lam,locmatrix):
   xb_bar = Xb*np.ones((M,1))/M
   yb_bar = Yb*np.ones((M,1))/M
  
-  if np.any(locmatrix) == None:
+  if locmatrix is None:
    # The method without localization (ETKF)
    Pa_ens = pinv((M-1)*np.eye(M)+Yb_pert.T*pinv(R)*Yb_pert)
    Wa = sqrtm((M-1)*Pa_ens) # matrix square root (symmetric)

@@ -25,7 +25,7 @@ def lorenz96(tf,x0,Nout):
 
     F = 8 # the forcing, for N>=12 (variables), a forcing F>5 guarantees chaos
 
-    if np.any(x0) == None:
+    if x0 is None:
         # If the model is started from rest, then x_j=F for all j and
         # we introduce a perturbation
         x[0,:] = F
@@ -76,9 +76,9 @@ def lorenz96_stoch(x_0,tmax,sqrtQ=None):
  for i in range(Nsteps-1): # for each time step
   Varsold = xt[i,:]
   delta = rk4(Varsold,tstep)
-  if np.any(sqrtQ)==None:
+  if sqrtQ is None:
    jump = np.zeros(Nx)
-  elif np.any(sqrtQ)!=None: 
+  elif sqrtQ is not None: 
    jump = np.dot(sqrtQ,np.random.randn(Nx))
   x_aux = Varsold + delta + jump
   xt[i+1,:] = x_aux

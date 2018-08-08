@@ -95,7 +95,7 @@ def evolvemembers(xold,tstep_truth,o2t,parout=None):
  xnew = np.empty((o2t+1,N,M))
  xnew.fill(np.nan)
  for j in range(M):
-  if np.any(parout)==None:
+  if parout is None:
    taux,xaux = lorenz63(xold[:,j],t_anal) # [o2t+1,N]
   else:      
    taux,xaux = lorenz63(xold[:,j],t_anal,parout[:,j]) # [o2t+1,N]

@@ -41,7 +41,7 @@ def rk4(Varsold,tstep,paramout=None):
 def f(x,paramout=None):
     "This function contains the actual L63 model."
     # The parameters
-    if np.any(paramout)==None:
+    if paramout is None:
      sigma = 10.0;     b = 8/3.0;    r = 28.0
     else: 
      sigma = paramout[0];  b = paramout[1];  r = paramout[2]
@@ -70,9 +70,9 @@ def lorenz63_stoch(x_0,tmax,sqrtQ=None):
  for i in range(Nsteps-1): # for each time step
   Varsold = xt[i,:]
   Varsnew = rk4(Varsold,tstep)
-  if np.any(sqrtQ)==None:
+  if sqrtQ is None:
    jump = [0,0,0]
-  elif np.ny(sqrtQ)!=None: 
+  elif sqrtQ is not None: 
    jump = np.dot(sqrtQ,np.random.randn(Nx))
   x_aux = Varsnew + jump
   xt[i+1,:] = x_aux
