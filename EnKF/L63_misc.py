@@ -91,8 +91,8 @@ def rmse_spread(xt,xmean,Xens,anawin):
     ind = range(0,la,anawin)
     mse = np.mean((xt[ind,:]-xmean[ind,:])**2,axis=1)
     rmse = np.sqrt(mse)
-
-    if Xens is not None:
+    
+    if np.any(Xens!=None):
         spread = np.var(Xens[ind,:,:],ddof=1,axis=2)
         spread = np.mean(spread,axis=1)
         spread = np.sqrt(spread)
