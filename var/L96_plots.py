@@ -128,7 +128,7 @@ def plotL96DA_pf(t,xt,Nx,tobs,y,observed_vars,xpf,x_m):
 def plotRMSP(t,rmseb=None,rmsea=None,spreadb=None,spreada=None):
  plt.figure()
  plt.subplot(2,1,1)
- if rmseb!=None:
+ if rmseb is not None:
   plt.plot(t,rmseb,'b',label='bgd')
   plt.hold(True)
  plt.plot(t,rmsea,'m',label='ana')
@@ -137,9 +137,9 @@ def plotRMSP(t,rmseb=None,rmsea=None,spreadb=None,spreada=None):
  plt.xlabel('time')
  plt.grid(True)
 
- if spreadb!=None:
+ if spreadb is not None:
   plt.subplot(2,2,3)
-  if rmseb!=None:
+  if rmseb is not None:
    plt.plot(t,rmseb,'b',label='RMSE')
    plt.hold(True)
   plt.plot(t,spreadb,'--k',label='spread')
@@ -148,7 +148,7 @@ def plotRMSP(t,rmseb=None,rmsea=None,spreadb=None,spreada=None):
   plt.xlabel('time')
   plt.grid(True)
 
- if spreada!=None:
+ if spreada is not None:
   plt.subplot(2,2,4)
   plt.plot(t,rmsea,'m',label='RMSE')
   plt.hold(True)
